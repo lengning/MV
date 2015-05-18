@@ -27,6 +27,8 @@ with variance above this line are considered as the high mean high variance gene
 
 XX_MV.pdf: mean vs. variance scatter plot. Selected genes are marked in green.
 
-XX_MeanMedVar.csv: mean, median, variance estimates for each gene.
+XX_MeanMedVar.txt: mean, median, variance estimates for each gene.
 
-XX_HighMHighV.csv: Selected high mean high variance genes.
+XX_HighMHighV.txt: Selected high mean high variance genes.
+
+XX_expression_HighMHighV.txt: normalized expression of selected high mean high variance genes.
