@@ -5,9 +5,13 @@ File=options[1] # file name
 MeanLow0=options[2] # lower limit of high mean genes
 MeanHigh0=options[3] # upper limit of high mean genes
 Norm=options[4] # whether perform normalization; if "T" is specified, median-by-ratio normalization will be performed.
+#csv=options[5] # whether output csv
+
 if(length(options)<2)MeanLow0 <- 100
 if(length(options)<3)MeanHigh0 <- "NULL"
 if(length(options)<4)Norm <- "F"
+#if(length(options)<5)Norm <- "T"
+
 
 if(MeanLow0=="NULL")MeanLow <- NULL
 if(MeanLow0!="NULL")MeanLow=as.numeric(MeanLow0)
@@ -63,14 +67,17 @@ if(is.na(Sizes[1])) MV=CalcMV(Data=Mat, NormData=TRUE, MeanCutLow=MeanLow
 					                             ,MeanCutHigh=MeanHigh)
 dev.off()
 
+if(length(MV$GeneToUse)<1)stop("no gene passed!")
 
 M1=cbind(MV$Mean, MV$Median, MV$Var)
 colnames(M1)=c("Mean","Median","Variance")
 M2=matrix(MV$GeneToUse,ncol=1)
 colnames(M2)="gene_name"
-write.csv(M1,file=paste0(prefix,"_MeanMedVar.csv"))
-write.csv(M2,file=paste0(prefix,"_HighMHighV.csv"))
-
+#write.csv(M1,file=paste0(prefix,"_MeanMedVar.csv"))
+#write.csv(M2,file=paste0(prefix,"_HighMHighV.csv"))
+write.table(M1,file=paste0(prefix,"_MeanMedVar.txt"))
+write.table(M2,file=paste0(prefix,"_HighMHighV.txt"))
+write.table(Mat[MV$GeneToUse,],paste0(prefix,"_expression_HighMHighV.txt"))
 
 
 
