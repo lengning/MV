@@ -75,9 +75,11 @@ M2=matrix(MV$GeneToUse,ncol=1)
 colnames(M2)="gene_name"
 #write.csv(M1,file=paste0(prefix,"_MeanMedVar.csv"))
 #write.csv(M2,file=paste0(prefix,"_HighMHighV.csv"))
-write.table(M1,file=paste0(prefix,"_MeanMedVar.txt"),sep="\t")
-write.table(M2,file=paste0(prefix,"_HighMHighV.txt"),sep="\t")
-write.table(Mat[MV$GeneToUse,],paste0(prefix,"_expression_HighMHighV.txt"),sep="\t")
+write.table(M1,file=paste0(prefix,"_MeanMedVar.txt"),sep="\t",quote=F)
+write.table(M2,file=paste0(prefix,"_HighMHighV.txt"),sep="\t",quote=F)
+tmp=cbind(MV$GeneToUse,Mat[MV$GeneToUse,])
+colnames(tmp)[1]=" "
+write.table(tmp,paste0(prefix,"_expression_HighMHighV.txt"),sep="\t",row.names=F,quote=F)
 
 
 
