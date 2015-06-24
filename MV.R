@@ -34,7 +34,7 @@ if(FileType=="csv"){
 if(FileType!="csv"){
 	cat("\n Read in tab delimited file \n")
 	prefix=strsplit(File,split=paste0("\\.",FileType))[[1]][1]
-	In=read.table(File,stringsAsFactors=F,row.names=1, sep="\t",header=T)
+	In=read.table(File,stringsAsFactors=F,row.names=1, sep="\t",header=T,quote="\"")
 }
 
 
@@ -42,8 +42,8 @@ if(FileType!="csv"){
 Matraw=data.matrix(In)
 
 cat(paste("\n",
-					"high expressers are defines as the ones with mean greater than",MeanLow0,
-				 "and less than", MeanHigh0, "\n"))	
+		"high expressers are defines as the ones with mean greater than",MeanLow0,
+		 "and less than", MeanHigh0, "\n"))	
 
 Mat=Matraw
 print(str(Mat))
